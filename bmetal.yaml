@@ -1,0 +1,17 @@
+# drill-01: the gate-lift drill's rung-1 blueprint. One web service built
+# from this repository (image deferred — the builder registers the digest
+# after the build), Dockerfile strategy: the repo carries the Dockerfile,
+# the blueprint carries the keep-alive contract.
+version: 1
+stack: drill01
+description: A minimal Go HTTP server with /healthz, built from source.
+services:
+  web:
+    source: https://github.com/bare-metal-cloud/user-repo-drill01
+    build:
+      strategy: dockerfile
+      start: /server
+    port: 8080
+    resources:
+      cpu: "0.5"
+      memory: 256Mi
