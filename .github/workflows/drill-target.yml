@@ -1,0 +1,17 @@
+name: BMC Runner Drill Target
+
+# The runners drill's target workflow (GH #3860): a trivial build job on
+# the profile's label, dispatched by the runner-drill harness. The file is
+# idempotent — re-runs converge, never duplicate.
+on:
+  workflow_dispatch:
+
+jobs:
+  drill-build:
+    runs-on: linux
+    steps:
+      - name: Prove the runner executes
+        run: |
+          echo "hello from the bmc runner drill"
+          uname -a
+          test -f /etc/hostname
